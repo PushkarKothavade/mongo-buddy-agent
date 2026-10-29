@@ -1,6 +1,6 @@
 # Mongo Buddy
 
-**A developer companion for MongoDB that turns natural-language questions and Atlas alerts into evidence-backed diagnostics.**
+**A developer companion for MongoDB that turns MongoDB Atlas alerts into evidence-backed diagnostics.**
 
 Mongo Buddy pairs a [Strands Agents](https://strandsagents.com/) agent with the official MongoDB MCP server. A React console renders the raw MCP responses (databases, slow-query explain plans, metrics, and root-cause evidence), so every conclusion can be traced to real data. The same Python application is also the Amazon Bedrock AgentCore entrypoint.
 
