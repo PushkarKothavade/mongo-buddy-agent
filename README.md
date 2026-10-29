@@ -1,8 +1,76 @@
 # Mongo Buddy
 
-Mongo Buddy is a developer companion for MongoDB. A [Strands Agents](https://strandsagents.com/) agent calls the official MongoDB MCP server, and a React console shows the MCP response: databases, slow-query explain plans, metrics, and root-cause evidence. The same Python app is the Amazon Bedrock AgentCore entrypoint.
+**A developer companion for MongoDB that turns natural-language questions and Atlas alerts into evidence-backed diagnostics.**
 
-The demo is aimed at [AWS Community Day Mumbai](https://acd.awsugmum.in/).
+Mongo Buddy pairs a [Strands Agents](https://strandsagents.com/) agent with the official MongoDB MCP server. A React console renders the raw MCP responses (databases, slow-query explain plans, metrics, and root-cause evidence), so every conclusion can be traced to real data. The same Python application is also the Amazon Bedrock AgentCore entrypoint.
+
+Built as a live demo for [AWS Community Day Mumbai](https://acd.awsugmum.in/).
+
+---
+
+## Problem Statement
+
+Operating MongoDB in production is rarely blocked by a lack of data. It is blocked by the effort needed to turn that data into a diagnosis. When a query slows down or an alert fires, a developer or on-call engineer typically has to:
+
+- Switch between Atlas dashboards, `mongosh`, profiler output, and metrics views
+- Interpret explain plans by hand to spot collection scans, inefficient index usage, or poor selectivity
+- Correlate signals such as latency, opcounters, cache pressure, and connections into a root-cause hypothesis
+- Recall indexing and schema design best practices under time pressure
+
+This work is repetitive and depends on individual expertise. It lengthens mean time to resolution (MTTR) and concentrates strong database diagnostics in a few specialists instead of making them available to every developer.
+
+## Opportunity
+
+Agentic AI can close this gap if it is grounded in real system state rather than generic advice. The Model Context Protocol (MCP) gives agents a standard, governed way to call tools against live infrastructure. The official MongoDB MCP server exposes database operations through that interface, so an agent can inspect actual deployments, run explain plans, and retrieve metrics instead of speculating.
+
+## Solution
+
+Mongo Buddy is organized into five layers:
+
+| Layer | Component | Responsibility |
+|---|---|---|
+| **Reasoning** | Strands Agents SDK | Plans and sequences tool calls, then synthesizes results into findings |
+| **Tool** | Official MongoDB MCP server | Discovers databases, runs slow-query explain plans, and pulls performance metrics from live clusters |
+| **Experience** | React console | Displays the raw MCP responses so conclusions stay traceable and verifiable |
+| **Runtime** | Amazon Bedrock AgentCore | Hosts the same Python app as a managed, scalable agent runtime |
+| **Trigger** | Atlas alert webhook | Starts an investigation automatically when an alert fires |
+
+```mermaid
+flowchart LR
+    A[Atlas Alert Webhook] --> R
+    U[Developer / React Console] --> R
+    R[Python App<br/>AgentCore Entrypoint] --> S[Strands Agent]
+    S --> M[MongoDB MCP Server]
+    M --> C[(MongoDB Atlas Cluster)]
+    M --> S
+    S --> R
+    R --> U
+```
+
+## Key Design Principles
+
+1. **Grounded in evidence:** Every recommendation is tied to real MCP output, not model assumptions.
+2. **Standards-based:** MCP and open agent frameworks keep the stack modular and portable.
+3. **Production-ready by design:** One codebase runs from a laptop to AgentCore, which shortens the path from demo to deployment.
+4. **Human-in-the-loop transparency:** The console exposes the agent's inputs and outputs for review.
+
+## Expected Outcomes
+
+- Faster time from alert to root cause
+- A lower expertise barrier for diagnosing query and index issues
+- A reusable reference architecture for building production-grade AI agents on AWS with MongoDB
+
+## Tech Stack
+
+- **Agent framework:** [Strands Agents](https://strandsagents.com/)
+- **Tooling protocol:** Model Context Protocol (MCP) with the official MongoDB MCP server
+- **Runtime:** Python, Amazon Bedrock AgentCore
+- **Frontend:** React
+- **Data platform:** MongoDB Atlas
+
+## Context
+
+Mongo Buddy is a live demonstration for AWS Community Day Mumbai. It shows how agentic AI, MCP, and managed agent infrastructure combine into a practical, production-oriented developer workflow that goes beyond a conceptual demo.
 
 ## Run it locally
 
