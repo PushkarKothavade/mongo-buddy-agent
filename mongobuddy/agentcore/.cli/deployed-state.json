@@ -1,0 +1,17 @@
+{
+  "targets": {
+    "default": {
+      "resources": {
+        "runtimes": {
+          "mongo_buddy": {
+            "runtimeId": "mongobuddy_mongo_buddy-1NVzOI7fA8",
+            "runtimeArn": "arn:aws:bedrock-agentcore:ap-south-1:979559056307:runtime/mongobuddy_mongo_buddy-1NVzOI7fA8",
+            "roleArn": "arn:aws:iam::979559056307:role/AgentCore-mongobuddy-defa-ApplicationAgentMongoBudd-qjTlJom5rpFa"
+          }
+        },
+        "stackName": "AgentCore-mongobuddy-default",
+        "deployHash": "d3218d7b92bef2a7"
+      }
+    }
+  }
+}

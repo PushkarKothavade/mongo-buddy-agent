@@ -1,0 +1,23 @@
+[project]
+name = "mongo-buddy"
+version = "0.1.0"
+description = "Mongo Buddy, a Strands agent for MongoDB developers on Amazon Bedrock AgentCore."
+authors = [
+    { name = "PushkarKothavade", email = "pushkarbk@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "bedrock-agentcore>=1.24.1",
+    "fastapi>=0.143.0",
+    "mcp>=1.0",
+    "python-dotenv>=1.2.4",
+    "strands-agents>=1.59.0",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[project.scripts]
+mongo-buddy = "mongo_buddy:main"
+
+[build-system]
+requires = ["uv_build>=0.12.9,<0.13.0"]
+build-backend = "uv_build"

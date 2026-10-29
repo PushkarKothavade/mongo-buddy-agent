@@ -1,0 +1,5 @@
+{
+  "ipAccessList": [
+    { "cidrBlock": "52.66.157.142/32" }
+  ]
+}

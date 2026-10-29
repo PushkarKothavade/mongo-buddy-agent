@@ -1,0 +1,77 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Atlas alert webhook that invokes the deployed Mongo Buddy AgentCore runtime.
+
+Parameters:
+  AgentRuntimeArn:
+    Type: String
+    Default: arn:aws:bedrock-agentcore:ap-south-1:979559056307:runtime/mongobuddy_mongo_buddy-1NVzOI7fA8
+  WebhookSecret:
+    Type: String
+    NoEcho: true
+    MinLength: 16
+    Description: Shared HMAC secret. Set the same value in the Atlas webhook integration.
+
+Resources:
+  AtlasAlertFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: mongodb-atlas-alert-webhook
+      CodeUri: .
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.12
+      Architectures:
+        - x86_64
+      Timeout: 300
+      MemorySize: 256
+      Environment:
+        Variables:
+          AGENT_RUNTIME_ARN: !Ref AgentRuntimeArn
+          WEBHOOK_SECRET: !Ref WebhookSecret
+          ALERT_BUCKET: !Ref AlertStatusBucket
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            - Sid: InvokeMongoBuddyAgent
+              Effect: Allow
+              Action:
+                - bedrock-agentcore:InvokeAgentRuntime
+              Resource:
+                - !Ref AgentRuntimeArn
+                - !Sub "${AgentRuntimeArn}/runtime-endpoint/*"
+            - Sid: InvokeSelfAsync
+              Effect: Allow
+              Action:
+                - lambda:InvokeFunction
+              Resource: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:mongodb-atlas-alert-webhook
+            - Sid: PublishAlertStatus
+              Effect: Allow
+              Action:
+                - s3:PutObject
+              Resource: !Sub ${AlertStatusBucket.Arn}/alerts/*
+      FunctionUrlConfig:
+        AuthType: NONE
+        InvokeMode: BUFFERED
+
+  AlertStatusBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub mongobuddy-atlas-alerts-${AWS::AccountId}
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      LifecycleConfiguration:
+        Rules:
+          - Id: ExpireAlertStatus
+            Status: Enabled
+            ExpirationInDays: 7
+
+Outputs:
+  WebhookUrl:
+    Description: Paste this URL into the Atlas webhook integration.
+    Value: !GetAtt AtlasAlertFunctionUrl.FunctionUrl
+  FunctionArn:
+    Description: Lambda function that validates alerts and invokes AgentCore.
+    Value: !GetAtt AtlasAlertFunction.Arn

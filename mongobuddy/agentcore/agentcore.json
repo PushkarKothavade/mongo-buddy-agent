@@ -1,0 +1,75 @@
+{
+  "$schema": "https://schema.agentcore.aws.dev/v1/agentcore.json",
+  "name": "mongobuddy",
+  "version": 1,
+  "managedBy": "CDK",
+  "tags": {
+    "agentcore:created-by": "agentcore-cli",
+    "agentcore:project-name": "mongobuddy"
+  },
+  "runtimes": [
+    {
+      "name": "mongo_buddy",
+      "build": "Container",
+      "entrypoint": "main.py",
+      "codeLocation": "app/mongo_buddy",
+      "buildContextPath": ".",
+      "dockerfile": "Dockerfile",
+      "runtimeVersion": "PYTHON_3_14",
+      "networkMode": "VPC",
+      "protocol": "HTTP",
+      "envVars": [
+        {
+          "name": "AWS_REGION",
+          "value": "ap-south-1"
+        },
+        {
+          "name": "MODEL_ID",
+          "value": "in.anthropic.claude-opus-5"
+        },
+        {
+          "name": "DOCKER_CONTAINER",
+          "value": "1"
+        },
+        {
+          "name": "MDB_MCP_COMMAND",
+          "value": "npx"
+        },
+        {
+          "name": "MDB_MCP_ARGS",
+          "value": "-y mongodb-atlas-mcp-remote@latest"
+        },
+        {
+          "name": "MDB_MCP_API_CLIENT_ID",
+          "value": "mdb_sa_id_6aca327a8f96ab62207c6491"
+        },
+        {
+          "name": "MDB_MCP_API_CLIENT_SECRET",
+          "value": "mdb_sa_sk_Ujz9Rgwti77smzr0FVwatFqKggwTg38iaUjtJu0B"
+        }
+      ],
+      "networkConfig": {
+        "vpcId": "vpc-077762eb05513394f",
+        "subnets": [
+          "subnet-0c17c5e6d4594a204"
+        ],
+        "securityGroups": [
+          "sg-02fd77b14228fcd48"
+        ]
+      }
+    }
+  ],
+  "memories": [],
+  "knowledgeBases": [],
+  "credentials": [],
+  "evaluators": [],
+  "onlineEvalConfigs": [],
+  "agentCoreGateways": [],
+  "policyEngines": [],
+  "configBundles": [],
+  "abTests": [],
+  "harnesses": [],
+  "datasets": [],
+  "capacityProviders": [],
+  "payments": []
+}

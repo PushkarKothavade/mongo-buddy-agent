@@ -1,0 +1,24 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "InvokeMongoBuddyAgent",
+      "Effect": "Allow",
+      "Action": [
+        "bedrock-agentcore:InvokeAgentRuntime"
+      ],
+      "Resource": [
+        "arn:aws:bedrock-agentcore:ap-south-1:979559056307:runtime/mongobuddy_mongo_buddy-1NVzOI7fA8",
+        "arn:aws:bedrock-agentcore:ap-south-1:979559056307:runtime/mongobuddy_mongo_buddy-1NVzOI7fA8/runtime-endpoint/*"
+      ]
+    },
+    {
+      "Sid": "InvokeSelfAsync",
+      "Effect": "Allow",
+      "Action": [
+        "lambda:InvokeFunction"
+      ],
+      "Resource": "arn:aws:lambda:ap-south-1:979559056307:function:mongodb-atlas-alert-webhook"
+    }
+  ]
+}
