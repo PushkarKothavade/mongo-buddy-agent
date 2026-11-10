@@ -67,15 +67,6 @@ Mongo Buddy is a live demonstration for AWS Community Day Mumbai. It shows how a
 
 # Mongo Buddy: Deployment Guide
 
-A new workstation can run the console only after two things exist:
-
-1. An **Atlas service account** whose API access list contains that workstation.
-2. An **AgentCore runtime** in `ap-south-1`.
-
-The console at <http://127.0.0.1:5173> calls that runtime with the AWS credentials on the workstation. It does not start the agent itself.
-
-## Table of contents
-
 1. [Install the tools](#1-install-the-tools)
 2. [AWS account](#2-aws-account)
 3. [Atlas service account](#3-atlas-service-account)
