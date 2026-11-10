@@ -89,7 +89,7 @@ npx -y mongodb-atlas-mcp-remote@latest
 
 Credentials are passed through `MDB_MCP_API_CLIENT_ID` and `MDB_MCP_API_CLIENT_SECRET`. A `MDB_MCP_CONNECTION_STRING` is optional if you would rather connect as a database user.
 
-Try the chips in the ask panel: list databases, inspect `aws_summit.customers`, explain a city/age query, read storage metrics, or ask for a root cause.
+Try the chips in the ask panel: list databases, inspect `aws_acd.customers`, explain a city/age query, read storage metrics, or ask for a root cause.
 
 ## Deploy to AgentCore
 
