@@ -2,7 +2,7 @@
 
 **A developer companion for MongoDB that turns MongoDB Atlas alerts into evidence-backed diagnostics.**
 
-Mongo Buddy pairs a [Strands Agents](https://strandsagents.com/) agent with the official MongoDB MCP server. A React console renders the raw MCP responses (databases, slow-query explain plans, metrics, and root-cause evidence), so every conclusion can be traced to real data.
+Mongo Buddy is an AI-powered developer companion that transforms MongoDB Atlas alerts into actionable, evidence-backed diagnostics and root cause analysis. Built on AWS AgentCore, it helps developers quickly identify issues, understand their underlying causes, and receive actionable recommendations for resolution. By grounding every insight in actual diagnostic evidence, Mongo Buddy brings greater transparency, confidence, and efficiency to troubleshooting. 
 
 Built as a live demo for [AWS Community Day Mumbai](https://acd.awsugmum.in/).
 
