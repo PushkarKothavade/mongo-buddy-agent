@@ -67,7 +67,7 @@ Mongo Buddy is a live demonstration for AWS Community Day Mumbai. It shows how a
 
 ## Run it locally
 
-Requirements: Python 3.14, [uv](https://docs.astral.sh/uv/), Node.js, and AWS credentials that can call Amazon Bedrock in `ap-south-1`.
+Requirements: Python 3.14, [uv](https://docs.astral.sh/uv/), Node.js, and AWS credentials.
 
 ```bash
 cp .env.example .env
