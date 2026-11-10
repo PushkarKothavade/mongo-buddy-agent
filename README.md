@@ -127,7 +127,7 @@ npx cdk bootstrap aws://ACCOUNT_ID/ap-south-1
 cd ../../..
 ```
 
-Put that account id in `mongobuddy/agentcore/aws-targets.json`. The file in this repo is account `979559056307`. Change it if this is a different account.
+Put that account id in `mongobuddy/agentcore/aws-targets.json`. 
 
 ## 3. Atlas service account
 
