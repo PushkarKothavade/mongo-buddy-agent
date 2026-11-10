@@ -174,7 +174,7 @@ bash mongobuddy/scripts/setup-agentcore-network.sh
 Copy the printed Elastic IP and add `that-address/32` to the Atlas service account API access list.
 
 > [!NOTE]
-> If you are joining the existing account `979559056307`, skip this script. The VPC, subnet, and security group are already in `agentcore.json`. Ask for the NAT address that is already on the Atlas access list, and add only your workstation IP.
+> The VPC, subnet, and security group are already in `agentcore.json`. Ask for the NAT address that is already on the Atlas access list, and add only your workstation IP.
 
 ## 6. Deploy the agent
 
