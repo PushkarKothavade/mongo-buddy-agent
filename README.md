@@ -2,7 +2,7 @@
 
 **A developer companion for MongoDB that turns MongoDB Atlas alerts into evidence-backed diagnostics.**
 
-Mongo Buddy pairs a [Strands Agents](https://strandsagents.com/) agent with the official MongoDB MCP server. A React console renders the raw MCP responses (databases, slow-query explain plans, metrics, and root-cause evidence), so every conclusion can be traced to real data. The same Python application is also the Amazon Bedrock AgentCore entrypoint.
+Mongo Buddy pairs a [Strands Agents](https://strandsagents.com/) agent with the official MongoDB MCP server. A React console renders the raw MCP responses (databases, slow-query explain plans, metrics, and root-cause evidence), so every conclusion can be traced to real data.
 
 Built as a live demo for [AWS Community Day Mumbai](https://acd.awsugmum.in/).
 
@@ -10,14 +10,7 @@ Built as a live demo for [AWS Community Day Mumbai](https://acd.awsugmum.in/).
 
 ## Problem Statement
 
-Operating MongoDB in production is rarely blocked by a lack of data. It is blocked by the effort needed to turn that data into a diagnosis. When a query slows down or an alert fires, a developer or on-call engineer typically has to:
-
-- Switch between Atlas dashboards, `mongosh`, profiler output, and metrics views
-- Interpret explain plans by hand to spot collection scans, inefficient index usage, or poor selectivity
-- Correlate signals such as latency, opcounters, cache pressure, and connections into a root-cause hypothesis
-- Recall indexing and schema design best practices under time pressure
-
-This work is repetitive and depends on individual expertise. It lengthens mean time to resolution (MTTR) and concentrates strong database diagnostics in a few specialists instead of making them available to every developer.
+Developers working with MongoDB often struggle to interpret Atlas alerts and system issues. A notice like “System Memory: Max Used above threshold” says that something went wrong, but not why it happened or what to do about it. Finding the cause means digging through metrics, slow-query logs and Performance Advisor, which takes time and deep database expertise. This slows down incident response and leaves teams reacting to alerts instead of fixing the underlying problem.
 
 ## Opportunity
 
